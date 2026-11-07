@@ -2,6 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <title>Nuevo alumno</title>
 </head>
 <body>
@@ -33,9 +34,9 @@
                        required>
             </div>
 
-            <button type="submit">Guardar</button>
+            <button  class="boton" type="submit">Guardar</button>
 
-            <a th:href="@{/alumnos}">Cancelar</a>
+            <a class="boton" th:href="@{/alumnos}">Cancelar</a>
 
         </form>
     </main>

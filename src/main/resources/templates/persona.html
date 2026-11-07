@@ -2,6 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <title>Listado de alumnos</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
         <h2>Listado de alumnos</h2>
 
         <p>
-            <a th:href="@{/alumnos/nuevo}">
+            <a class="boton" th:href="@{/alumnos/nuevo}">
                 Registrar un alumno
             </a>
         </p>

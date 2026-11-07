@@ -30,11 +30,11 @@
 
             <property
                 name="javax.jdo.option.ConnectionUserName"
-                value="Tu usuario"/>
+                value="programacion2"/>
 
               <property
                 name="javax.jdo.option.ConnectionPassword"
-                value="Tu contraseña"/>
+                value="Programacion2"/>
 
 
             <property
