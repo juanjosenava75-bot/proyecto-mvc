@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+                 https://jakarta.ee/xml/ns/persistence
+                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="Programacion2">
+    
+
+        <class>com.programacion2.proyecto_mvc.dominio.Persona</class>
+        <class>com.programacion2.proyecto_mvc.dominio.Materia</class>
+        <class>com.programacion2.proyecto_mvc.dominio.Profesor</class>
+         <class>com.programacion2.proyecto_mvc.dominio.Alumno</class>
+
+
+        <exclude-unlisted-classes/>
+
+        <properties>
+
+            <property
+                name="javax.jdo.option.ConnectionDriverName"
+                value="com.mysql.cj.jdbc.Driver"/>
+
+            <property
+                name="javax.jdo.option.ConnectionURL"
+                value="jdbc:mysql://localhost:3306/programacion2"/>
+
+            <property
+                name="javax.jdo.option.ConnectionUserName"
+                value="Tu usuario"/>
+
+              <property
+                name="javax.jdo.option.ConnectionPassword"
+                value="Tu contraseña"/>
+
+
+            <property
+                name="datanucleus.schema.autoCreateAll"
+                value="true"/>
+
+        </properties>
+
+    </persistence-unit>
+
+</persistence>

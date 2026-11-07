@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de alumnos</title>
+</head>
+<body>
+
+    <header th:replace="~{fragments/header :: encabezado}"></header>
+
+    <main>
+        <h2>Listado de alumnos</h2>
+
+        <p>
+            <a th:href="@{/alumnos/nuevo}">
+                Registrar un alumno
+            </a>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="alumno : ${alumnos}">
+                    <td th:text="${alumno.nombre}">Ana</td>
+                    <td th:text="${alumno.apellido}">Pérez</td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(alumnos)}">
+                    <td colspan="2">
+                        Todavía no hay alumnos registrados.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+</body>
+</html>

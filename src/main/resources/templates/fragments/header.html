@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <header th:fragment="encabezado">
+
+        <h1>Gestión de alumnos</h1>
+
+        <nav>
+            <a th:href="@{/}">Inicio</a>
+            <a th:href="@{/alumnos}">Listado de alumnos</a>
+            <a th:href="@{/alumnos/nuevo}">Nuevo alumno</a>
+        </nav>
+
+        <hr>
+
+    </header>
+
+</body>
+</html>

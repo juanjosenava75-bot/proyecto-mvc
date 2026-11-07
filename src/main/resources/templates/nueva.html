@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo alumno</title>
+</head>
+<body>
+
+    <header th:replace="~{fragments/header :: encabezado}"></header>
+
+    <main>
+        <h2>Registrar alumno</h2>
+
+        <form th:action="@{/alumnos}"
+              th:object="${alumno}"
+              method="post">
+
+            <div>
+                <label for="nombre">Nombre:</label>
+
+                <input type="text"
+                       id="nombre"
+                       th:field="*{nombre}"
+                       required>
+            </div>
+
+            <div>
+                <label for="apellido">Apellido:</label>
+
+                <input type="text"
+                       id="apellido"
+                       th:field="*{apellido}"
+                       required>
+            </div>
+
+            <button type="submit">Guardar</button>
+
+            <a th:href="@{/alumnos}">Cancelar</a>
+
+        </form>
+    </main>
+
+</body>
+</html>

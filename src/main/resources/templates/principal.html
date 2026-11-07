@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+</head>
+<body>
+
+    <header th:replace="~{fragments/header :: encabezado}"></header>
+
+    <main>
+        <h2>Bienvenidos</h2>
+
+        <p>
+            Desde esta aplicación podemos registrar alumnos
+            y consultar el listado.
+        </p>
+
+        <a th:href="@{/alumnos}">Ver alumnos</a>
+    </main>
+
+</body>
+</html>
