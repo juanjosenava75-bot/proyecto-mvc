@@ -9,19 +9,23 @@ import com.programacion2.proyecto_mvc.dominio.Alumno;
 
 import com.programacion2.proyecto_mvc.repositorio.IRepositorio;
 
-@Service 
-public class Servicio implements IServicio <Alumno> {
+// Registra esta clase como un componente de la capa de servicios.
+@Service
+public class Servicio implements IServicio<Alumno> {
 
-   @Autowired 
-    private  IRepositorio <Alumno> repositorio ;
+    // Spring inyecta el repositorio en este atributo.
+    @Autowired
+    private IRepositorio<Alumno> repositorio;
 
+    // Anotación de Java: verifica que implementamos un método de IServicio.
     @Override
     public void guardar(Alumno objeto) {
-       repositorio.guardar(objeto);
+        repositorio.guardar(objeto);
     }
 
+    // Implementa el método de consulta definido en IServicio.
     @Override
     public List<Alumno> consultar() {
-       return repositorio.listar(Alumno.class);
+        return repositorio.listar(Alumno.class);
     }
 }

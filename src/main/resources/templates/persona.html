@@ -1,18 +1,22 @@
 <!DOCTYPE html>
+<!-- El dialecto SpringStandard de Thymeleaf reconoce los atributos con prefijo th:. -->
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <!-- th:href genera la URL del CSS. @{...} tiene en cuenta la ruta base de la aplicación. -->
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <title>Listado de alumnos</title>
 </head>
 <body>
 
+    <!-- th:replace reemplaza este elemento por el fragmento "encabezado". -->
     <header th:replace="~{fragments/header :: encabezado}"></header>
 
     <main>
         <h2>Listado de alumnos</h2>
 
         <p>
+            <!-- th:href genera la URL del formulario de alta. -->
             <a class="boton" th:href="@{/alumnos/nuevo}">
                 Registrar un alumno
             </a>
@@ -27,11 +31,14 @@
             </thead>
 
             <tbody>
+                <!-- th:each repite la fila por cada alumno de la lista del modelo. -->
                 <tr th:each="alumno : ${alumnos}">
+                    <!-- th:text reemplaza el texto de ejemplo por el valor de cada propiedad. -->
                     <td th:text="${alumno.nombre}">Ana</td>
                     <td th:text="${alumno.apellido}">Pérez</td>
                 </tr>
 
+                <!-- th:if muestra la fila solo si #lists.isEmpty(...) devuelve true. -->
                 <tr th:if="${#lists.isEmpty(alumnos)}">
                     <td colspan="2">
                         Todavía no hay alumnos registrados.
