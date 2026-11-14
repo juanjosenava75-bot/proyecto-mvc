@@ -13,4 +13,6 @@ public interface IRepositorio<T> {
     List<T> listar(Class<T> clase);
 
     List<T> buscarPorNombre(String nombre,Class<T> clase) ;
+
+   void eliminar(Class<T> clase, int id);
 }

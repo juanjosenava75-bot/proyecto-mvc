@@ -28,4 +28,27 @@ public class Servicio implements IServicio<Alumno> {
     public List<Alumno> consultar() {
         return repositorio.listar(Alumno.class);
     }
+
+    @Override
+    public void actualizar(int id, Alumno datosFormulario) {
+        // Recupera el alumno existente y lo devuelve separado al hacer commit.
+        Alumno alumno = repositorio.consultar(Alumno.class, id);
+
+        // Modifica el objeto separado con los datos del formulario.
+        alumno.setNombre(datosFormulario.getNombre());
+        alumno.setApellido(datosFormulario.getApellido());
+
+        // makePersistent vuelve a adjuntar el alumno y el commit guarda los cambios.
+        repositorio.guardar(alumno);
+    }
+
+    @Override
+    public Alumno consultarPorId(int id) {
+        return repositorio.consultar(Alumno.class, id);
+    }
+
+    @Override
+    public void eliminar(int id) {
+        repositorio.eliminar(Alumno.class, id);
+    }
 }

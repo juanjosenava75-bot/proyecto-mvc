@@ -1,47 +1,43 @@
 <!DOCTYPE html>
 <!-- El dialecto SpringStandard de Thymeleaf reconoce los atributos con prefijo th:. -->
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <!-- th:href genera la URL del CSS. @{...} tiene en cuenta la ruta base de la aplicación. -->
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <title>Nuevo alumno</title>
 </head>
+
 <body>
 
     <!-- th:replace reemplaza este elemento por el fragmento "encabezado". -->
     <header th:replace="~{fragments/header :: encabezado}"></header>
 
     <main>
-        <h2>Registrar alumno</h2>
+        <h2 th:text="${modoEdicion == true ? 'Editar alumno' : 'Registrar alumno'}">
+            Registrar alumno
+        </h2>
 
-        <!-- th:action genera la URL a la que se envía el formulario. -->
-        <!-- th:object selecciona el objeto "alumno" que el controlador agregó al modelo. -->
-        <form th:action="@{/alumnos}"
-              th:object="${alumno}"
-              method="post">
+        <!-- En edición envía al POST con el ID; en alta envía al POST de registro. -->
+        <!-- Usa la URL que el controlador preparó para el alta o la edición. -->
+        <form th:action="@{${accionFormulario}}" th:object="${alumno}" method="post">
 
             <div>
                 <label for="nombre">Nombre:</label>
 
                 <!-- th:field vincula el campo con la propiedad "nombre" del objeto seleccionado. -->
-                <input type="text"
-                       id="nombre"
-                       th:field="*{nombre}"
-                       required>
+                <input type="text" id="nombre" th:field="*{nombre}" required>
             </div>
 
             <div>
                 <label for="apellido">Apellido:</label>
 
                 <!-- *{apellido} accede a la propiedad "apellido" del objeto elegido con th:object. -->
-                <input type="text"
-                       id="apellido"
-                       th:field="*{apellido}"
-                       required>
+                <input type="text" id="apellido" th:field="*{apellido}" required>
             </div>
 
-            <button  class="boton" type="submit">Guardar</button>
+            <button class="boton" type="submit">Guardar</button>
 
             <!-- th:href genera el enlace para volver al listado de alumnos. -->
             <a class="boton" th:href="@{/alumnos}">Cancelar</a>
@@ -50,4 +46,5 @@
     </main>
 
 </body>
+
 </html>

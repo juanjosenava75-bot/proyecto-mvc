@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <!-- El dialecto SpringStandard de Thymeleaf reconoce los atributos con prefijo th:. -->
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <!-- th:href genera la URL del CSS. @{...} tiene en cuenta la ruta base de la aplicación. -->
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <title>Listado de alumnos</title>
 </head>
+
 <body>
 
     <!-- th:replace reemplaza este elemento por el fragmento "encabezado". -->
@@ -36,6 +38,16 @@
                     <!-- th:text reemplaza el texto de ejemplo por el valor de cada propiedad. -->
                     <td th:text="${alumno.nombre}">Ana</td>
                     <td th:text="${alumno.apellido}">Pérez</td>
+                    <td>
+                        <a class="boton" th:href="@{/alumnos/{id}/editar(id=${alumno.id})}">
+                            Editar
+                        </a>
+
+                        <form th:action="@{/alumnos/{id}/eliminar(id=${alumno.id})}" method="post"
+                            style="display: inline" onsubmit="return confirm('¿Eliminar este alumno?');">
+                            <button class="boton" type="submit">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
 
                 <!-- th:if muestra la fila solo si #lists.isEmpty(...) devuelve true. -->
@@ -49,4 +61,5 @@
     </main>
 
 </body>
+
 </html>

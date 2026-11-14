@@ -14,13 +14,11 @@ import javax.jdo.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
-@Repository 
+@Repository
 public class Repositorio<T> implements IRepositorio<T> {
-    
-    @Autowired 
-    private  PersistenceManagerFactory pmf;
 
+    @Autowired
+    private PersistenceManagerFactory pmf;
 
     @Override
     public void guardar(T objeto) {
@@ -239,7 +237,7 @@ public class Repositorio<T> implements IRepositorio<T> {
 
     }
 
- @Override 
+    @Override
     public List<T> buscarPorNombre(
             String nombre,
             Class<T> clase) {
@@ -317,4 +315,27 @@ public class Repositorio<T> implements IRepositorio<T> {
         }
     }
 
+    @Override
+    public void eliminar(Class<T> clase, int id) {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+
+        try {
+            tx.begin();
+
+            // Recupera el registro y lo elimina en la misma transacción.
+            T objeto = pm.getObjectById(clase, id);
+            pm.deletePersistent(objeto);
+
+            tx.commit();
+        } finally {
+            try {
+                if (tx.isActive()) {
+                    tx.rollback();
+                }
+            } finally {
+                pm.close();
+            }
+        }
+    }
 }

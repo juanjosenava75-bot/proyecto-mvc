@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.programacion2.proyecto_mvc.dominio.Alumno;
@@ -37,8 +38,8 @@ public class AlumnoControlador {
     // Atiende GET /alumnos/nuevo y abre el formulario nueva.html.
     @GetMapping("/alumnos/nuevo")
     public String nuevo(Model model) {
-        // Proporciona un objeto vacío para vincularlo con el formulario.
         model.addAttribute("alumno", new Alumno());
+        model.addAttribute("accionFormulario", "/alumnos");
         return "nueva";
     }
 
@@ -51,6 +52,27 @@ public class AlumnoControlador {
         servicio.guardar(alumno);
 
         // Hace que el navegador vuelva a pedir el listado con un GET.
+        return "redirect:/alumnos";
+    }
+
+    @GetMapping("/alumnos/{id}/editar")
+    public String editar(@PathVariable("id") int id, Model model) {
+        model.addAttribute("alumno", servicio.consultarPorId(id));
+        model.addAttribute("accionFormulario", "/alumnos/" + id + "/editar");
+        return "nueva";
+    }
+
+    @PostMapping("/alumnos/{id}/editar")
+    public String actualizar(@PathVariable("id") int id,
+            @ModelAttribute("alumno") Alumno datos) {
+        servicio.actualizar(id, datos);
+
+        return "redirect:/alumnos";
+    }
+
+    @PostMapping("/alumnos/{id}/eliminar")
+    public String eliminar(@PathVariable("id") int id) {
+        servicio.eliminar(id);
         return "redirect:/alumnos";
     }
 }
